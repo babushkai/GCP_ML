@@ -1,6 +1,6 @@
 # Babushka
 
-Agnostic Framework for End to End ML Deployment 
+GCP Framework for End to End ML Deployment 
 
 Initiallizing the env
 ```
