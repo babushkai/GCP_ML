@@ -38,8 +38,18 @@ def compute_feature():
     pass
 
 @app.command()
-def trainer():
-    pass
+def trainer(display_name: str, bq_source: str):
+    """
+    Args:
+    bq_source = "bq://project.dataset.table_name"
+    """
+    from google.cloud import aiplatform
+    dataset = aiplatform.TabularDataset.create(
+        display_name=display_name,
+        bq_source = bq_source)
+    
+    dataset.wait()
+    train.train(dataset)
 
 @app.command()
 def load_artifacts():

@@ -4,8 +4,6 @@ from typing import List, Dict
 
 from google.cloud import aiplatform
 
-
-
 def load_model():
     """
     TODO: Build sklearn classification model
