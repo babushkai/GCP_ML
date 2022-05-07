@@ -3,6 +3,9 @@ from argparse import Namespace
 from typing import List, Dict
 
 from google.cloud import aiplatform
+project="project-daisuke318420"
+location="us-central1"
+display_name="AutoML"
 
 def load_model():
     """
