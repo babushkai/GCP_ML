@@ -14,7 +14,7 @@ from sklearn.metrics import precision_recall_curve
 from babushka import data, models, utils
 
 
-def train(test):
+def train():
     model = models.initialize_model(auto=False)
     model.run(
         dataset=test,
