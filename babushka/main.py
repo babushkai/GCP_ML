@@ -40,9 +40,8 @@ def ELT_data():
 
     )
     dataset.wait()
+    print(f"Your dataset ID is: {dataset.name}")
 
-    print(f'\tDataset: "{dataset.display_name}')
-    print(f'\tname: "{dataset.resource_name}"')
 
     
     
