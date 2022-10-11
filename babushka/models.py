@@ -87,7 +87,7 @@ def load_automl(model_type = None, table_type=None):
             model = aiplatform.AutoMLForecastingTrainingJob(
                 dispaly_name="table time model",      
             )
-        else:
+        else: 
             return False
 
         return model
