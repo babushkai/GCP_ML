@@ -26,7 +26,7 @@ def save_model(model_type: str = None, table_type: str=None):
         if table_type="regression":
 
         elif table_type="classification":
-
+            pass
         else:
             return False
 
@@ -43,7 +43,7 @@ def save_model(model_type: str = None, table_type: str=None):
             decoded = tf.image.conver_image_dtype(decoded, tf.loat32)
             resized = tf.image.resize(decoded, size=(224, 224))
             return resized
-        
+
         @tf.function(input_signature=[tf.TensorSpec([None], tf.string)])
         def preprocess_fn(bytes_inputs):
             decoded_images = tf.map_fn(_preprocess, bytes_inputs, dtype=tf.loat32, back_prop = False)
@@ -55,7 +55,7 @@ def save_model(model_type: str = None, table_type: str=None):
             images = preprocess_fn(bytes_inputs)
             prob = m_call(**images)
             return prob
-        
+
         m_call = tf.function(tfhub_model.call).get_concrete_function(
             [tf.TensorSpec(shape=[None, 224, 224, 3], dtype = tf.float32, name=CONCRETE_INPUT)]
         )
@@ -85,9 +85,9 @@ def load_automl(model_type = None, table_type=None):
                 )
         elif table_type="time":
             model = aiplatform.AutoMLForecastingTrainingJob(
-                dispaly_name="table time model",      
+                dispaly_name="table time model",
             )
-        else: 
+        else:
             return False
 
         return model
