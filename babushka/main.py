@@ -33,10 +33,10 @@ def ELT_data():
                 inquirer.List("location", message="Which table type to be used?",
                 choices =['us-central1', "Classification", "Time Series"])]
     # Extract, Load, Transform
-    data = data.load_data(project=questions["project"], 
+    data = data.load_data(project=questions["project"],
             location=questions["project"],
             display_name=questions["project"],
-            bq_source=questions["project"]))
+            bq_source=questions["project"])
 
     print(data.name)
 
