@@ -84,3 +84,7 @@ def load_artifacts():
                 choices =['Regression', "Classification", "Time Series"])]
 
     model = models.load_model()
+
+
+if __name__ == "__main__":
+    app()

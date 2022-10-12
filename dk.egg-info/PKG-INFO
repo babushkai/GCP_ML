@@ -1,0 +1,7 @@
+Metadata-Version: 2.1
+Name: dk
+Version: 0.0.0
+Summary: test
+Author: Daisuke Kuwabara
+License: MIT
+Provides-Extra: test

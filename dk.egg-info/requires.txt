@@ -13,3 +13,9 @@ snorkel==0.9.8
 streamlit==1.10.0
 typer==0.4.1
 uvicorn==0.17.6
+
+[test]
+coverage[toml]==6.0.2
+great-expectations==0.13.14
+pytest==6.0.2
+pytest-cov==2.10.1
