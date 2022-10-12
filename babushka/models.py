@@ -10,7 +10,7 @@ project="project-daisuke318420"
 location="us-central1"
 display_name="AutoML"
 
-def save_model(model_type: str = None, table_type: str=None):s
+def save_model(model_type: str = None, table_type: str=None):
     """
     TODO: Build sklearn classification model
     """
@@ -62,7 +62,7 @@ def save_model(model_type: str = None, table_type: str=None):s
 
         tf.saved_model.save(tfhub_model, MODEL_DIR, signatures={"serving_default": serving_fn})
 
-    
+
 def load_model(model_type = None, table_type=None):
 
     #Loading process
