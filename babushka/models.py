@@ -19,7 +19,7 @@ def save_model(model_type: str = None, table_type: str=None):
     BUCKET_URI = f"gs://{BUCKET_NAME}"
     MODEL_DIR = BUCKET_URI + "/model"
 
-    ```Image classification Model```
+    #Image classification Model
 
     # Download the pretrained model from Tensorflow Hub
     if model_type = "table":
