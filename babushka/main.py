@@ -18,7 +18,7 @@ from numpyencoder import NumpyEncoder
 from optuna.integration.mlflow import MLflowCallback
 
 from orchestrator import dag1
-from babushka import data, models, predict, train, utils 
+from babushka import data, models, predict, train, utils, evaluate
 
 # Ignore warning
 #warnings.filterwarnings("ignore")
@@ -28,22 +28,17 @@ app = typer.Typer()
 
 @app.command()
 def ELT_data():
-    questions = [inquirer.List("model_type", message="Which model to be used?",
-                choices=['Table', 'Image', 'Language']),
-                inquirer.List("table_type", message="Which table type to be used?",
-                choices =['Regression', "Classification", "Time Series"])]
+    questions = [inquirer.List("project", message="Which project to be used?",
+                choices=['project-daisuke-318402', 'Image', 'Language']),
+                inquirer.List("location", message="Which table type to be used?",
+                choices =['us-central1', "Classification", "Time Series"])]
     # Extract, Load, Transform
-    from google.cloud import aiplatform
-    aiplatform.TabularDataset.create(
-        display_name=display_name,
-        gcs_source=gcs_source
+    data = data.load_data(project=questions["project"], 
+            location=questions["project"],
+            display_name=questions["project"],
+            bq_source=questions["project"]))
 
-    )
-    dataset.wait()
-    print(f"Your dataset ID is: {dataset.name}")
-
-    
-    
+    print(data.name)
 
 @app.command()
 def download_auxiliary_data():
@@ -59,16 +54,19 @@ def compute_feature():
 
 @app.command()
 def trainer(dataset_id: str,):
-    """
+    """Training the model
+
     Args:
-    bq_source = "bq://project.dataset.table_name"
+        dataset_id (str): dataset id where to be obtained in the elt phase
     """
-    
     # Retrieve existing dataset
     from google.cloud import aiplatform
-    dataset = aiplatform.TabularDataset.(dataset_id)
+    dataset = aiplatform.TabularDataset(dataset_id)
     train.train(dataset)
 
+@app.command()
+def evaluate_model():
+    evaluate.get_model_evaluation_tabular_classification()
 
 def save_artifacts():
     questions = [inquirer.List("model_type", message="Which model to be used?",
