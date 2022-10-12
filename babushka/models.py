@@ -22,15 +22,15 @@ def save_model(model_type: str = None, table_type: str=None):
     #Image classification Model
 
     # Download the pretrained model from Tensorflow Hub
-    if model_type = "table":
-        if table_type="regression":
-
-        elif table_type="classification":
+    if model_type == "table":
+        if table_type =="regression":
+            pass
+        elif table_type=="classification":
             pass
         else:
             return False
 
-    elif model_type = "image":
+    elif model_type == "image":
         tfhub_model = tf.keras.Sequential(
             [hub.KerasLayer("https://tfhub.dev/google/imagenet/resnet_v2_101/classification/5")]
         )
