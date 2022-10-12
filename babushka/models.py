@@ -71,19 +71,19 @@ def load_model(model_type = None, table_type=None):
 
 def load_automl(model_type = None, table_type=None):
     aiplatform.init(project=project, location=location)
-    if model_type = "table":
-        if table_type="regression":
+    if model_type == "table":
+        if table_type=="regression":
             model = aiplatform.AutoMLTabularTrainingJob(
                 display_name="table regressionmodel",
                 optimization_prediction_type="regression"
                 )
 
-        elif table_type="classification":
+        elif table_type=="classification":
             model = aiplatform.AutoMLTabularTrainingJob(
                 display_name="table classification model",
                 optimization_prediction_type="classification"
                 )
-        elif table_type="time":
+        elif table_type=="time":
             model = aiplatform.AutoMLForecastingTrainingJob(
                 dispaly_name="table time model",
             )
@@ -92,7 +92,7 @@ def load_automl(model_type = None, table_type=None):
 
         return model
 
-    if model_type="image":
+    if model_type=="image":
         model = aiplatform.AutoMLImageTrainingJob(
                 display_name=display_name,
                 prediction_type="classification"
