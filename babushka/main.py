@@ -32,11 +32,13 @@ def ELT_data():
                 inquirer.Text("location", message="Location of your data"),
                 inquirer.Text("display_name", message="What is the name of dataset?"),
                 inquirer.Text("bigquery_source", message="Path to the bigquery source, ex: bq://project.dataset.table")]
+    answers = inquirer.prompt(questions)
+
     # Extract, Load, Transform
-    dataset = data.load_data(project=questions["project"],
-            location=questions["location"],
-            display_name=questions["display_name"],
-            bq_source=questions["bigquery_source"])
+    dataset = data.load_data(project=answers["project"],
+            location=answers["location"],
+            display_name=answers["display_name"],
+            bq_source=answers["bigquery_source"])
 
     print(dataset.name)
 
