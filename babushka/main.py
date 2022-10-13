@@ -28,17 +28,17 @@ app = typer.Typer()
 
 @app.command()
 def ELT_data():
-    questions = [inquirer.List("project", message="Which project to be used?",
-                choices=['project-daisuke-318402', 'Image', 'Language']),
-                inquirer.List("location", message="Which table type to be used?",
-                choices =['us-central1', "Classification", "Time Series"])]
+    questions = [inquirer.Text("project", message="Your GCP Project"),
+                inquirer.Text("location", message="Location of your data"),
+                inquirer.Text("display_name", message="What is the name of dataset?"),
+                inquirer.Text("bigquery_source", message="Path to the bigquery source, ex: bq://project.dataset.table")]
     # Extract, Load, Transform
-    data = data.load_data(project=questions["project"],
-            location=questions["project"],
-            display_name=questions["project"],
-            bq_source=questions["project"])
+    dataset = data.load_data(project=questions["project"],
+            location=questions["location"],
+            display_name=questions["display_name"],
+            bq_source=questions["bigquery_source"])
 
-    print(data.name)
+    print(dataset.name)
 
 @app.command()
 def download_auxiliary_data():
