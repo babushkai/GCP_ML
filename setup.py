@@ -9,7 +9,7 @@ with open(Path(BASE_DIR, "requirements.txt")) as file:
 
 test_packages = [
     "coverage[toml]==6.0.2",
-    "great-expectations==0.13.14",
+    "great-expectations",
     "pytest==6.0.2",
     "pytest-cov==2.10.1",
 ]
