@@ -64,7 +64,8 @@ def trainer():
     # Retrieve existing dataset
     from google.cloud import aiplatform
     dataset = aiplatform.TabularDataset(input("Enter Dataset ID: ", ))
-    train.train(dataset)
+    target_var=input("Target Column: ", )
+    train.train(dataset=dataset, target_column=target_var)
 
 @app.command()
 def evaluate_model():

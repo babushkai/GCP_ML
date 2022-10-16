@@ -14,7 +14,7 @@ from sklearn.metrics import precision_recall_curve
 from babushka import data, models, utils
 
 
-def train(dataset: str):
+def train(dataset: str= None, target_column: str = None):
     job = models.initialize_model()
     model = job.run(
         dataset=dataset,
@@ -22,5 +22,6 @@ def train(dataset: str):
         model_display_name="automl",
         disable_early_stopping=False,
         sync=True,
+        target_column = target_column
     )
     model.wait()
