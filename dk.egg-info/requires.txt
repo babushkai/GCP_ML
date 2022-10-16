@@ -1,6 +1,7 @@
 dvc==2.10.2
 fastapi==0.78.0
 imbalanced-learn
+scikit-multilearn
 mlflow==1.23.1
 nltk==3.7
 numpy
@@ -12,6 +13,10 @@ scikit-learn
 streamlit==1.10.0
 typer==0.4.1
 uvicorn==0.17.6
+inquirer
+google-cloud-aiplatform
+tensorflow-macos
+tensorflow-hub
 
 [test]
 coverage[toml]==6.0.2

@@ -1,2 +1,2 @@
 [console_scripts]
-babushuka = babushka.main:app
+babushka = babushka.main:app

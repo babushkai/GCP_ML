@@ -36,6 +36,8 @@ def load_data(project: str = None,
     print(f'\tDataset: "{dataset.display_name}"')
     print(f'\tname: "{dataset.resource_name}"')
 
+    return dataset
+
 def filter_name():
     pass
 
