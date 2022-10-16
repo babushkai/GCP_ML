@@ -69,7 +69,7 @@ def load_model(model_type = None, table_type=None):
     loaded = tf.saved_model.load(MODEL_DIR)
     #serving_input = list(loaded.signatures["serving_default"].structured_input_signatures[1].keys())
 
-def load_automl(model_type = None, table_type=None):
+def load_automl(model_type: str = "table", table_type: str="regression"):
     aiplatform.init(project=project, location=location)
     if model_type == "table":
         if table_type=="regression":
