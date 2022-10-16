@@ -9,9 +9,6 @@ from babushka import main
 JSON = Union[Dict[str, 'JSON'], List['JSON'], int, str, float, bool, Type[None]]
 
 
-
-
-
 # Define application
 app = FastAPI(
     title="Babushka",
