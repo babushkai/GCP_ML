@@ -57,6 +57,7 @@ def posting(request: Request) -> Dict:
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
+        "data": {},
     }
     return response
 
