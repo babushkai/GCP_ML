@@ -35,7 +35,7 @@ setup(name="dk",
 },
     entry_points = {
         "console_scripts": [
-            "babushuka = babushka.main:app",
+            "babushka = babushka.main:app",
         ],
     },
     )
