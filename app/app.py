@@ -18,9 +18,13 @@ def wrapper():
     pass
 
 @app.get("/")
-def _index(request: Request) -> JSON:
-    response={}
-
+def _index() -> Dict:
+    """Health check."""
+    response = {
+        "message": HTTPStatus.OK.phrase,
+        "status-code": HTTPStatus.OK,
+        "data": {},
+    }
     return response
 
 

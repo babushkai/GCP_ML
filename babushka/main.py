@@ -40,7 +40,7 @@ def ELT_data():
             display_name=answers["display_name"],
             bq_source=answers["bigquery_source"])
 
-    print(f"Your dataset ID is: {dataset.name}")
+    print(f"Your Dataset ID is: {dataset.name}")
 
 @app.command()
 def download_auxiliary_data():
@@ -63,7 +63,7 @@ def trainer():
     """
     # Retrieve existing dataset
     from google.cloud import aiplatform
-    dataset = aiplatform.TabularDataset(input("Enter Dataset ID: ", ))
+    dataset = aiplatform.TabularDataset(input("Enter Dataset ID to be trained: ", ))
     target_var=input("Target Column: ", )
     train.train(dataset=dataset, target_column=target_var)
 
@@ -71,22 +71,9 @@ def trainer():
 def evaluate_model():
     evaluate.get_model_evaluation_tabular_classification()
 
-def save_artifacts():
-    questions = [inquirer.List("model_type", message="Which model to be used?",
-                choices=['Table', 'Image', 'Language']),
-                inquirer.List("table_type", message="Which table type to be used?",
-                choices =['Regression', "Classification", "Time Series"])]
-
-    models.save_model(questions["model_type"], questions="table_type")
-
 @app.command()
-def load_artifacts():
-    questions = [inquirer.List("model_type", message="Which model to be used?",
-                choices=['Table', 'Image', 'Language']),
-                inquirer.List("table_type", message="Which table type to be used?",
-                choices =['Regression', "Classification", "Time Series"])]
+def deploy_model():
 
-    model = models.load_model()
 
 
 if __name__ == "__main__":
