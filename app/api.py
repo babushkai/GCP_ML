@@ -3,10 +3,13 @@ from http import HTTPStatus
 from datetime import datetime
 from functools import wraps
 from typing import Union, Dict, List, Type
-
+from pydantic import BaseModel
 from babushka import main
 
 JSON = Union[Dict[str, 'JSON'], List['JSON'], int, str, float, bool, Type[None]]
+
+class Base(BaseModel):
+    texts: str
 
 # Define application
 app = FastAPI(
@@ -49,7 +52,7 @@ def load_artifacts(text):
 
 @app.post("/")
 @wrapper
-async def posting(request: Request, text: str):
+async def posting(request: Request, text: Base):
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
