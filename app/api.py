@@ -11,6 +11,9 @@ JSON = Union[Dict[str, 'JSON'], List['JSON'], int, str, float, bool, Type[None]]
 class Base(BaseModel):
     texts: str
 
+    class Confg:
+        orm_mode=True
+
 # Define application
 app = FastAPI(
     title="Babushka",
