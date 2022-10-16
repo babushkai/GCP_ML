@@ -99,7 +99,7 @@ def load_automl(model_type = None, table_type=None):
                 )
         return model
 
-def initialize_model(auto: str == True):
+def initialize_model(auto: str = True):
     if auto:
         model = load_automl()
     else:
