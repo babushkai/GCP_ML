@@ -63,7 +63,7 @@ def trainer():
     """
     # Retrieve existing dataset
     from google.cloud import aiplatform
-    dataset = aiplatform.TabularDataset(input("Enter Dataset ID", ))
+    dataset = aiplatform.TabularDataset(input("Enter Dataset ID: ", ))
     train.train(dataset)
 
 @app.command()

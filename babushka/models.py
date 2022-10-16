@@ -1,12 +1,12 @@
 import math
 from argparse import Namespace
 from typing import List, Dict
-import google.cloud.aiplatform as aip
 import tensorflow as tf
 import tensorflow_hub as hub
 
 from google.cloud import aiplatform
-project="project-daisuke318420"
+
+project="project-daisuke-318402"
 location="us-central1"
 display_name="AutoML"
 
@@ -74,7 +74,7 @@ def load_automl(model_type = None, table_type=None):
     if model_type == "table":
         if table_type=="regression":
             model = aiplatform.AutoMLTabularTrainingJob(
-                display_name="table regressionmodel",
+                display_name="table regression model",
                 optimization_prediction_type="regression"
                 )
 
@@ -99,7 +99,7 @@ def load_automl(model_type = None, table_type=None):
                 )
         return model
 
-def initialize_model(auto: False):
+def initialize_model(auto: True):
     if auto:
         model = load_automl()
     else:
