@@ -8,11 +8,10 @@ from babushka import main
 
 JSON = Union[Dict[str, 'JSON'], List['JSON'], int, str, float, bool, Type[None]]
 
-# class Base(BaseModel):
-#     texts: str
+class Base(BaseModel):
+    texts: str
 
-class Payload(BaseModel):
-    data: str = ""
+
 
 
 # Define application
@@ -54,18 +53,15 @@ def _index(request: Request) -> Dict:
 def load_artifacts(text):
     pass
 
-# @app.post("/")
-# @wrapper
-# async def posting(request: Request, text: Base):
-#     response = {
-#         "message": HTTPStatus.OK.phrase,
-#         "status-code": HTTPStatus.OK,
-#         "data": text.texts,
-#     }
-#     return response
-@app.post("/add")
-async def add_data(payload: Payload = None):
-    return payload
+@app.post("/")
+@wrapper
+async def posting(request: Request, text: Base):
+    response = {
+        "message": HTTPStatus.OK.phrase,
+        "status-code": HTTPStatus.OK,
+        "data": {"data": text.texts},
+    }
+    return response
 
 
 
