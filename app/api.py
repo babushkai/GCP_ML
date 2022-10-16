@@ -14,7 +14,7 @@ app = FastAPI(
     version="0.1",
 )
 
-def wrapper():
+def wrapper(f):
     @wraps(f)
     def wrap(request: Request, *args, **kwargs) -> Dict:
         results = f(request, *args, **kwargs)
