@@ -63,7 +63,7 @@ def load_artifacts(text):
 #         "data": text.texts,
 #     }
 #     return response
-@app.post("/")
+@app.post("/add")
 async def add_data(payload: Payload = None):
     return payload
 
