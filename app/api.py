@@ -49,7 +49,7 @@ def load_artifacts(text):
 
 @app.post("/")
 @wrapper
-async def posting():
+async def posting(request: Request):
     print(text.texts)
 
 
