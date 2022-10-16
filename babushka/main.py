@@ -55,7 +55,7 @@ def compute_feature():
     pass
 
 @app.command()
-def trainer(dataset_id: str,):
+def trainer():
     """Training the model
 
     Args:
