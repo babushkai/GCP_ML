@@ -8,8 +8,6 @@ from babushka import main
 
 JSON = Union[Dict[str, 'JSON'], List['JSON'], int, str, float, bool, Type[None]]
 
-class Base(BaseModel):
-    texts: str
 
 
 
@@ -55,11 +53,10 @@ def load_artifacts(text):
 
 @app.post("/")
 @wrapper
-def posting(request: Request, text: Base) -> Dict:
+def posting(request: Request) -> Dict:
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
-        "data": text,
     }
     return response
 
