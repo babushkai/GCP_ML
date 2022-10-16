@@ -74,7 +74,7 @@ def response():
     @wraps(f) 
     def wrap():
         pass
-    
+
     return wrap
 
 #@response
