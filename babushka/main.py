@@ -40,7 +40,7 @@ def ELT_data():
             display_name=answers["display_name"],
             bq_source=answers["bigquery_source"])
 
-    print(dataset.name)
+    print(f"Your dataset ID is: {dataset.name}")
 
 @app.command()
 def download_auxiliary_data():
@@ -63,7 +63,7 @@ def trainer(dataset_id: str,):
     """
     # Retrieve existing dataset
     from google.cloud import aiplatform
-    dataset = aiplatform.TabularDataset(dataset_id)
+    dataset = aiplatform.TabularDataset(input("Enter Dataset ID", ))
     train.train(dataset)
 
 @app.command()
