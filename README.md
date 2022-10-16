@@ -3,8 +3,11 @@
 ## Workflow
 
 ### Pre-requiste
-1. Install and initialize the [gcloud CLI](https://cloud.google.com/sdk/docs/install), if you haven't already.
-2. gcloud auth application-default login
+
+This project will use [**Google Cloud Platform**](https://cloud.google.com/) as the mainframe. Free trial $300 up to 90 days are [offered](https://cloud.google.com/free). Once creating your account, follow the instructions below
+
+ 1. Install and initialize the [gcloud CLI](https://cloud.google.com/sdk/docs/install), if you haven't already.
+2. Create your credential file ```gcloud auth application-default login```
 
 Refer to the [GCP official document](https://cloud.google.com/docs/authentication/provide-credentials-adc#local-dev
 ) on local developlment environment
