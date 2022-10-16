@@ -59,7 +59,7 @@ async def posting(request: Request, text: Base):
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
-        "data": {"data": text.texts},
+        "data": text,
     }
     return response
 
