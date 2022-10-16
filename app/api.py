@@ -53,11 +53,11 @@ def load_artifacts(text):
 
 @app.post("/")
 @wrapper
-def posting(request: Request) -> Dict:
+def posting(request: Request, input_:str) -> Dict:
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
-        "data": {},
+        "data": input_,
     }
     return response
 
