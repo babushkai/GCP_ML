@@ -11,8 +11,6 @@ JSON = Union[Dict[str, 'JSON'], List['JSON'], int, str, float, bool, Type[None]]
 class Base(BaseModel):
     texts: str
 
-    class Confg:
-        orm_mode=True
 
 # Define application
 app = FastAPI(
@@ -59,7 +57,7 @@ async def posting(request: Request, text: Base):
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
-        "data": {"text": text.texts},
+        "data": text.texts,
     }
     return response
 
