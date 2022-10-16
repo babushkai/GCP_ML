@@ -23,7 +23,7 @@ def wrapper(f):
             "message": results["message"],
             "method": request.method,
             "status-code": results["status-code"],
-            "timestamp": datetime.now.isoformat(),
+            "timestamp": datetime.now().isoformat(),
             "url": request.url._url,
         }
         if "data" in results:
