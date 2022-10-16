@@ -33,7 +33,7 @@ def wrapper(f):
 
 @app.get("/")
 @wrapper
-def _index() -> Dict:
+def _index(request: Request) -> Dict:
     """Health check."""
     response = {
         "message": HTTPStatus.OK.phrase,
