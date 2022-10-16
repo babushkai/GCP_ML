@@ -44,8 +44,14 @@ def _index(request: Request) -> Dict:
     return response
 
 
-def load_artifacts():
+def load_artifacts(text):
     pass
+
+@app.post("/")
+@wrapper
+async def posting():
+    print(text.texts)
+
 
 
 def response():
