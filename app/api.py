@@ -23,7 +23,7 @@ def _index() -> Dict:
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
-        "data": {},
+        "data": {"This is the correct"},
     }
     return response
 
