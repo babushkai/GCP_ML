@@ -15,10 +15,6 @@ class Payload(BaseModel):
     data: str = ""
 
 
-@app.post("/")
-async def add_data(payload: Payload = None):
-    return payload
-
 # Define application
 app = FastAPI(
     title="Babushka",
