@@ -15,7 +15,7 @@ from babushka import data, models, utils
 
 
 def train(dataset: str):
-    job = models.initialize_model(auto=False)
+    job = models.initialize_model()
     model = job.run(
         dataset=dataset,
         budget_milli_node_hours=8000,
