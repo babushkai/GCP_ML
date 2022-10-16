@@ -73,8 +73,7 @@ def evaluate_model():
 
 @app.command()
 def deploy_model():
-
-
+    pass
 
 if __name__ == "__main__":
     app()
