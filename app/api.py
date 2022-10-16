@@ -55,7 +55,7 @@ def load_artifacts(text):
 
 @app.post("/")
 @wrapper
-async def posting(request: Request, text: Base):
+def posting(request: Request, text: Base) -> Dict:
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
