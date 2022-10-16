@@ -4,7 +4,7 @@
 
 ### Pre-requiste
 1. Install and initialize the [gcloud CLI](https://cloud.google.com/sdk/docs/install), if you haven't already.
-2. Create your credential file ```gcloud auth application-default login```
+2. gcloud auth application-default login
 
 Refer to the [GCP official document](https://cloud.google.com/docs/authentication/provide-credentials-adc#local-dev
 ) on local developlment environment
