@@ -64,7 +64,6 @@ def load_artifacts(text):
 #     }
 #     return response
 @app.post("/")
-@wrapper
 async def add_data(payload: Payload = None):
     return payload
 
