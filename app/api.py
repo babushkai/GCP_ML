@@ -49,11 +49,11 @@ def load_artifacts(text):
 
 @app.post("/")
 @wrapper
-async def posting(request: Request):
+async def posting(request: Request, text: str):
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
-        "data": {},
+        "data": {text.texts},
     }
     return response
 
