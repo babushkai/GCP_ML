@@ -1,6 +1,6 @@
 # Babushka
 
-## Workflow
+## Workflow (Tips)[htps://github.com/kwdaisuke/GCP_ML/blob/main/tips.md]
 
 ### Pre-requiste
 

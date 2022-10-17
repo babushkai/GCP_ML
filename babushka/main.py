@@ -68,8 +68,8 @@ def trainer():
     train.train(dataset=dataset, target_column=target_var)
 
 @app.command()
-def evaluate_model():
-    evaluate.get_model_evaluation_tabular_classification()
+def get_evaluation():
+    return evaluate.get_model_evaluation_tabular_classification()
 
 @app.command()
 def deploy_model():
