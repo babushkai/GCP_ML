@@ -6,8 +6,6 @@ import tensorflow_hub as hub
 
 from google.cloud import aiplatform
 
-project="project-daisuke-318402"
-location="us-central1"
 display_name="AutoML"
 
 
@@ -17,7 +15,11 @@ def load_model(model_type = None, table_type=None):
     loaded = tf.saved_model.load(MODEL_DIR)
     #serving_input = list(loaded.signatures["serving_default"].structured_input_signatures[1].keys())
 
-def load_automl(model_type: str = "table", table_type: str="regression"):
+def load_automl(project: str ="project-daisuke-318402",
+                location: str ="us-central1",
+                model_type: str = "table", 
+                table_type: str="regression"):
+
     aiplatform.init(project=project, location=location)
     if model_type == "table":
         if table_type=="regression":
