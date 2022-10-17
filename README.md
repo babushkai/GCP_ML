@@ -1,6 +1,6 @@
 # Babushka
 
-## Workflow [Tips](htps://github.com/kwdaisuke/GCP_ML/blob/main/tips.md)
+## Workflow
 
 ### Pre-requiste
 
@@ -96,3 +96,5 @@ The structure of this repository
         ├── __init__.py
         └── test_dag1.py
 ```
+
+[Tips](htps://github.com/kwdaisuke/GCP_ML/blob/main/tips.md)
