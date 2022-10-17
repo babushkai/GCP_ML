@@ -38,14 +38,12 @@ def load_automl(model_type: str = "table", table_type: str="regression"):
         else:
             return False
 
-        return model
-
     if model_type=="image":
         model = aiplatform.AutoMLImageTrainingJob(
                 display_name=display_name,
                 prediction_type="classification"
                 )
-        return model
+    return model
 
 def initialize_model(auto: str = True):
     if auto:
