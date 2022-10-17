@@ -17,7 +17,7 @@ def load_model(model_type = None, table_type=None):
 
 def load_automl(project: str ="project-daisuke-318402",
                 location: str ="us-central1",
-                model_type: str = "table", 
+                model_type: str = "table",
                 table_type: str="regression"):
 
     aiplatform.init(project=project, location=location)
