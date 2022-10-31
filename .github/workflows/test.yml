@@ -18,13 +18,8 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.8.13
-      - name: Caching
-        uses: actions/cache@v2
-        with:
-          path: ${{ env.pythonLocation }} # Automatically added by the setup-python https://github.com/actions/setup-python
-          key: ${{ env.pythonLocation }}-${{ hashFiles('setup.py') }}-${{ hashFiles('requirements.txt') }}
       - name: Install dependencies
         run: |
-          python -m pip install -e ".[test]"
+          python3 -m pip install -e ".[test]"
       - name: Execute tests
         run: pytest tests 
