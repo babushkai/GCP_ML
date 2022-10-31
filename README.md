@@ -21,8 +21,8 @@ Refer to the [GCP official document](https://cloud.google.com/docs/authenticatio
 ```
 python3 -m venv env
 source env/bin/activate
-python -m pip install --upgrade pip setuptools wheel
-python -m pip install -e ".[test]"
+python3 -m pip install --upgrade pip setuptools wheel
+python3 -m pip install -e ".[test]"
 ```
 
 We are going to use `babuska` as the entry point of our command
