@@ -35,7 +35,7 @@ babushka elt-data
 
 3. Train the model
 ```
-babuska trainer
+babushka trainer
 ```
 
 
