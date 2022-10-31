@@ -31,14 +31,16 @@ def ELT_data():
     questions = [inquirer.Text("project", message="Your GCP Project"),
                 inquirer.Text("location", message="Location of your data"),
                 inquirer.Text("display_name", message="What is the name of dataset?"),
-                inquirer.Text("bigquery_source", message="Path to the bigquery source, ex: bq://project.dataset.table")]
+                inquirer.Text("type", message="What is the type of dataset? [tabular, image, text]"),
+                inquirer.Text("source", message="Path to GCS or Bigquery source, ex: gs://files or bq://project.dataset.table")]
     answers = inquirer.prompt(questions)
 
     # Extract, Load, Transform
     dataset = data.load_data(project=answers["project"],
             location=answers["location"],
             display_name=answers["display_name"],
-            bq_source=answers["bigquery_source"])
+            type = answers["type"],
+            source=answers["source"])
 
     print(f"Your Dataset ID is: {dataset.name}")
 

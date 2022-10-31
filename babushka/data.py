@@ -8,14 +8,13 @@ from typing import List, Sequence, Tuple
 
 import numpy as np
 import pandas as pd
-from nltk.stem import PorterStemmer
-from skmultilearn.model_selection import IterativeStratification
 from google.cloud import aiplatform
 
-def load_data(project: str = None, 
+def load_data(project: str = None,
             location: str = "us-central1",
             display_name: str = None,
-            bq_source: str = None):
+            type: str = None,
+            source: str = None):
     """Load data from the source
 
     Args:
@@ -26,10 +25,30 @@ def load_data(project: str = None,
     """
     aiplatform.init(project=project, location=location)
 
-    dataset = aiplatform.TabularDataset.create(
-        display_name=display_name,
-        bq_source=bq_source,
-    )
+    if type=="tabular":
+        if source.startswith("gs://"):
+            dataset = aiplatform.TabularDataset.create(
+                display_name=display_name,
+                gcs_source=source,
+            )
+        elif source.startswith("bq://"):
+            dataset = aiplatform.TabularDataset.create(
+                display_name=display_name,
+                bq_source=source,
+            )
+
+    elif type=="image":
+        #https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.ImageDataset#google_cloud_aiplatform_ImageDataset_create
+        dataset = aiplatform.ImageDataset.create(
+            display_name=display_name,
+        )
+
+    elif type=="text":
+        dataset = aiplatform.TextDataset.create(
+            display_name=display_name,
+        )
+    else:
+        return False
 
     dataset.wait()
 
