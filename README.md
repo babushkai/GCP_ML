@@ -31,7 +31,7 @@ We are going to use `babuska` as the entry point of our command
 ```
 babushka elt-data
 ```
-**Note: keep your dataset ID here**
+> **Note: keep your dataset ID here**
 
 3. Train the model
 ```
