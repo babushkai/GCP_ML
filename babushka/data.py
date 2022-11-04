@@ -41,6 +41,7 @@ def load_data(project: str = None,
         #https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.ImageDataset#google_cloud_aiplatform_ImageDataset_create
         dataset = aiplatform.ImageDataset.create(
             display_name=display_name,
+            gcs_source = source
         )
 
     elif type=="text":
@@ -54,6 +55,7 @@ def load_data(project: str = None,
 
     print(f'\tDataset: "{dataset.display_name}"')
     print(f'\tname: "{dataset.resource_name}"')
+    print(f'\tColumn: {dataset.column_names}')
 
     return dataset
 
@@ -64,10 +66,4 @@ def prepare():
     pass
 
 def preprocess():
-    pass
-
-class Sample:
-    pass
-
-class Sample2:
     pass

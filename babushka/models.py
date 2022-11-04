@@ -34,17 +34,22 @@ def load_automl(project: str ="project-daisuke-318402",
                 optimization_prediction_type="classification"
                 )
         elif table_type=="time":
+            #https://cloud.google.com/python/docs/reference/aiplatform/latest/google.cloud.aiplatform.AutoMLForecastingTrainingJob
             model = aiplatform.AutoMLForecastingTrainingJob(
                 dispaly_name="table time model",
+                optimization_objective = "minimize-rmse" #default
             )
         else:
             return False
 
-    if model_type=="image":
+    elif model_type=="image":
         model = aiplatform.AutoMLImageTrainingJob(
                 display_name=display_name,
                 prediction_type="classification"
                 )
+    else:
+        return False
+
     return model
 
 def initialize_model(auto: str = True):
