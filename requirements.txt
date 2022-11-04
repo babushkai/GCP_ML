@@ -15,5 +15,5 @@ typer==0.4.1
 uvicorn==0.17.6
 inquirer
 google-cloud-aiplatform
-tensorflow-macos==2.10.0 # Tensorflow for M1 Mac
+tensorflow
 tensorflow-hub
