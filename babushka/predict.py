@@ -7,6 +7,6 @@ def predict() -> Dict:
     Returns:
 
     """
-    
+
     predictions = [{}]
     return predictions
