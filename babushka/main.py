@@ -85,7 +85,6 @@ def get_evaluation():
                                 choices=id_list)]
 
 
-    logger.info(subprocess.run(["gcloud ai models list --region us-central1)"]))
     questions.add(inquirer.List("model_id",
                                 message="Choose your model ID",
                 choices=[id_.decode('utf-8')[:19] for id_ in out.splitlines()[1:]],))
