@@ -27,7 +27,7 @@ app = typer.Typer()
 @app.command()
 def elt_data():
     """Extract, Load, Transform data
-    """ 
+    """
     questions = [inquirer.Text("project", message="Your GCP Project"),
                 inquirer.Text("location", message="Location of your data"),
                 inquirer.Text("display_name", message="What is the name of dataset?"),

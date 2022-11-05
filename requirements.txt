@@ -17,3 +17,4 @@ inquirer
 google-cloud-aiplatform
 tensorflow
 tensorflow-hub
+apache-airflow-providers-airbyte
