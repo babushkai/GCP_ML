@@ -2,8 +2,8 @@ from google.cloud import aiplatform
 
 
 def get_model_evaluation(
-    project: str= "project-daisuke-318402",
-    model_id: str,
+    project: str = "project-daisuke-318402",
+    model_id: str = None,
     location: str = "us-central1",
     api_endpoint: str = "us-central1-aiplatform.googleapis.com",):
     model_client = aiplatform.gapic.ModelServiceClient(
