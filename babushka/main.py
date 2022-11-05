@@ -84,11 +84,6 @@ def get_evaluation():
                                 message="Choose your model ID",
                                 choices=id_list)]
 
-
-    questions.add(inquirer.List("model_id",
-                                message="Choose your model ID",
-                choices=[id_.decode('utf-8')[:19] for id_ in out.splitlines()[1:]],))
-
     answers = inquirer.prompt(questions)
 
     evaluation_id, metrics = evaluate.get_model_evaluation(project=answers["project"],
