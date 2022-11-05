@@ -4,12 +4,26 @@
 import json
 import numbers
 import random
+import subprocess
 from typing import Dict, List
 from urllib.request import urlopen
 
 import numpy as np
 import pandas as pd
 
+
+def get_id(command: str = None) -> List:
+    """Retrieve ID from gcloud bash command
+
+    Args:
+        command (str, optional): Bash command to be executed. Defaults to None.
+
+    Returns:
+        List: ID values to be retrieved
+    """
+    out = subprocess.check_output([command], shell=True)
+    id_list = [id_.decode('utf-8')[:19] for id_ in out.splitlines()[1:]]
+    return id_list
 
 def load_json_from_url(url: str) -> Dict:
     """Load JSON data from a URL.

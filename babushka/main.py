@@ -20,7 +20,7 @@ import typer
 
 from config import config
 from config.config import logger
-from babushka import data, models, predict, train, utils, evaluate
+from babushka import data, models, predict, train, utils, evaluate, deploy
 
 warnings.filterwarnings("ignore")
 
@@ -28,7 +28,7 @@ warnings.filterwarnings("ignore")
 app = typer.Typer()
 
 @app.command()
-def ELT_data():
+def elt_data():
     questions = [inquirer.Text("project", message="Your GCP Project"),
                 inquirer.Text("location", message="Location of your data"),
                 inquirer.Text("display_name", message="What is the name of dataset?"),
@@ -47,18 +47,6 @@ def ELT_data():
     logger.info(f"Your Dataset ID is: {dataset.name}")
 
 @app.command()
-def download_auxiliary_data():
-    print("test")
-
-@app.command()
-def trigger_orchestrator():
-    pass
-
-@app.command()
-def compute_feature():
-    pass
-
-@app.command()
 def trainer():
     """Training the model
 
@@ -73,16 +61,17 @@ def trainer():
 
 @app.command()
 def get_evaluation():
-    # Get model id as string
-    out = subprocess.check_output(['gcloud ai models list --region us-central1'], shell=True)
-    id_list = [id_.decode('utf-8')[:19] for id_ in out.splitlines()[1:]]
-    # Turn string into id list by decoding and trimming
+    """Retrieve Evaluation of model
+
+    Returns:
+        str: string of evaluation id path
+    """
 
     questions = [inquirer.Text("project", message="Your GCP Project"),
                 inquirer.Text("location", message="Location of your data"),
                 inquirer.List("model_id",
                                 message="Choose your model ID",
-                                choices=id_list)]
+                                choices=utils.get_id('gcloud ai models list --region us-central1'))]
 
     answers = inquirer.prompt(questions)
 
@@ -90,13 +79,43 @@ def get_evaluation():
             location=answers["location"],
             model_id=answers["model_id"])
 
-    logger.info(evaluation_id)
-    logger.info(json.dumps(metrics, indent=2))
+    logger.info(f"Evaluation ID: {evaluation_id}")
+    logger.info(f"Performance Metrics: \n {json.dumps(metrics, indent=2)}")
 
     return evaluation_id
 
 @app.command()
+def endpoint():
+    questions = [inquirer.Text("project", message="Your GCP Project"),
+                inquirer.Text("location", message="Location of your data"),
+                inquirer.Text("display_name", message="What is the name of dataset?"),]
+
+    answers = inquirer.prompt(questions)
+
+    deploy.create_endpoint(answers["project"],
+                            answers["display_name"],
+                            answers["location"])
+
+@app.command()
 def deploy_model():
+
+    questions = [inquirer.Text("project", message="Your GCP Project"),
+                inquirer.Text("location", message="Location of your data"),
+                inquirer.List("model_id",
+                                message="Choose your model ID",
+                                choices=utils.get_id('gcloud ai endpoints list --region=us-central1'))]
+    answers = inquirer.prompt(questions)
+
+@app.command()
+def download_auxiliary_data():
+    print("test")
+
+@app.command()
+def trigger_orchestrator():
+    pass
+
+@app.command()
+def compute_feature():
     pass
 
 if __name__ == "__main__":
