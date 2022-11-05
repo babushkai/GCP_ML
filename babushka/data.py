@@ -49,13 +49,13 @@ def load_data(project: str = None,
             display_name=display_name,
         )
     else:
-        return False
+        raise ValueError("type is incorrect")
 
     dataset.wait()
 
     print(f'\tDataset: "{dataset.display_name}"')
     print(f'\tname: "{dataset.resource_name}"')
-    print(f'\tColumn: {dataset.column_names}')
+#   print(f'\tColumn: {dataset.column_names}')
 
     return dataset
 

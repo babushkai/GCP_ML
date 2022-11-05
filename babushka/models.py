@@ -48,7 +48,7 @@ def load_automl(project: str ="project-daisuke-318402",
                 prediction_type="classification"
                 )
     else:
-        return False
+        raise ValueError("Model type value is incorrect")
 
     return model
 
