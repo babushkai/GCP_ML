@@ -88,7 +88,7 @@ def get_evaluation():
 def endpoint():
     questions = [inquirer.Text("project", message="Your GCP Project"),
                 inquirer.Text("location", message="Location of your data"),
-                inquirer.Text("display_name", message="What is the name of dataset?"),]
+                inquirer.Text("display_name", message="What is the name of endpoint?"),]
 
     answers = inquirer.prompt(questions)
 
@@ -103,8 +103,22 @@ def deploy_model():
                 inquirer.Text("location", message="Location of your data"),
                 inquirer.List("model_id",
                                 message="Choose your model ID",
+                                choices=utils.get_id('gcloud ai models list --region=us-central1')),
+                inquirer.List("endpoint_id",
+                                message="Choose your model ID",
                                 choices=utils.get_id('gcloud ai endpoints list --region=us-central1'))]
     answers = inquirer.prompt(questions)
+
+    deploy.deploy_model_with_dedicated_resources(
+    #TODO
+    project=answers["project"],
+    location = answers["locaion"], 
+    model_name= answers["model_id"],
+    machine_type= answers["locaion"],
+    endpoint = answers["endpoint_id"],
+    deployed_model_display_name= answers["locaion"],
+    traffic_percentage= answers["locaion"],
+    traffic_split= answers["locaion"])
 
 @app.command()
 def download_auxiliary_data():
