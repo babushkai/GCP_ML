@@ -1,6 +1,3 @@
-# babushka/utils.py
-# Utility functions.
-
 import json
 import numbers
 import random
@@ -24,6 +21,7 @@ def get_id(command: str = None) -> List:
     out = subprocess.check_output([command], shell=True)
     id_list = [id_.decode('utf-8')[:19] for id_ in out.splitlines()[1:]]
     return id_list
+
 
 def load_json_from_url(url: str) -> Dict:
     """Load JSON data from a URL.

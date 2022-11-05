@@ -5,8 +5,6 @@ import json
 import tempfile
 import warnings
 import subprocess
-
-import inquirer
 from argparse import Namespace
 from datetime import datetime
 from pathlib import Path
@@ -14,9 +12,7 @@ from typing import Dict, Optional
 
 import pandas as pd
 import typer
-#from feast import FeatureStore
-#from numpyencoder import NumpyEncoder
-#from optuna.integration.mlflow import MLflowCallback
+import inquirer
 
 from config import config
 from config.config import logger
@@ -24,11 +20,14 @@ from babushka import data, models, predict, train, utils, evaluate, deploy
 
 warnings.filterwarnings("ignore")
 
+
 # Typer CLI app
 app = typer.Typer()
 
 @app.command()
 def elt_data():
+    """Extract, Load, Transform data
+    """ 
     questions = [inquirer.Text("project", message="Your GCP Project"),
                 inquirer.Text("location", message="Location of your data"),
                 inquirer.Text("display_name", message="What is the name of dataset?"),
@@ -46,6 +45,7 @@ def elt_data():
     print(f"Your Dataset ID is: {dataset.name}")
     logger.info(f"Your Dataset ID is: {dataset.name}")
 
+
 @app.command()
 def trainer():
     """Training the model
@@ -58,6 +58,7 @@ def trainer():
     dataset = aiplatform.TabularDataset(input("Enter Dataset ID to be trained: ", ))
     target_var=input("Target Column: ", )
     train.train(dataset=dataset, target_column=target_var)
+
 
 @app.command()
 def get_evaluation():
@@ -84,8 +85,11 @@ def get_evaluation():
 
     return evaluation_id
 
+
 @app.command()
 def endpoint():
+    """Create Endpoint
+    """
     questions = [inquirer.Text("project", message="Your GCP Project"),
                 inquirer.Text("location", message="Location of your data"),
                 inquirer.Text("display_name", message="What is the name of endpoint?"),]
@@ -96,9 +100,9 @@ def endpoint():
                             answers["display_name"],
                             answers["location"])
 
+
 @app.command()
 def deploy_model():
-
     questions = [inquirer.Text("project", message="Your GCP Project"),
                 inquirer.Text("location", message="Location of your data"),
                 inquirer.List("model_id",
@@ -120,13 +124,16 @@ def deploy_model():
     traffic_percentage= answers["locaion"],
     traffic_split= answers["locaion"])
 
+
 @app.command()
 def download_auxiliary_data():
     print("test")
 
+
 @app.command()
 def trigger_orchestrator():
     pass
+
 
 @app.command()
 def compute_feature():

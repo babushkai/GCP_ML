@@ -1,10 +1,7 @@
-from argparse import Namespace
 from typing import List, Dict, Optional, Sequence, Tuple
-import tensorflow as tf
 
 from google.cloud import aiplatform
 from google.cloud.aiplatform import explain
-
 
 
 def create_endpoint(
@@ -12,6 +9,16 @@ def create_endpoint(
     display_name: str = "endpoint1",
     location: str = "us-central1",
 ):
+    """Endpoint generation
+
+    Args:
+        project (str, optional): Project ID. Defaults to "project-daisuke-318402".
+        display_name (str, optional): Name to be displayed. Defaults to "endpoint1".
+        location (str, optional): Endpoint location. Defaults to "us-central1".
+
+    Returns:
+        obj: endpoint instance
+    """
     aiplatform.init(project=project, location=location)
 
     endpoint = aiplatform.Endpoint.create(
