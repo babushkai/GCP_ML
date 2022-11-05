@@ -16,7 +16,8 @@ import typer
 #from numpyencoder import NumpyEncoder
 #from optuna.integration.mlflow import MLflowCallback
 
-#from orchestrator import dag1
+from config import config
+from config.config import logger
 from babushka import data, models, predict, train, utils, evaluate
 
 warnings.filterwarnings("ignore")
@@ -41,6 +42,7 @@ def ELT_data():
             source=answers["source"])
 
     print(f"Your Dataset ID is: {dataset.name}")
+    logger.info(f"Your Dataset ID is: {dataset.name}")
 
 @app.command()
 def download_auxiliary_data():

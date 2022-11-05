@@ -16,9 +16,21 @@ def load_model(model_type = None, table_type=None):
     #serving_input = list(loaded.signatures["serving_default"].structured_input_signatures[1].keys())
 
 def load_automl(project: str ="project-daisuke-318402",
-                location: str ="us-central1",
                 model_type: str = "table",
                 table_type: str="regression"):
+    """Instanciate GCP AutoML
+
+    Args:
+        project (str, optional): ProjectID. Defaults to "project-daisuke-318402".
+        model_type (str, optional): Model Type in each strategy. Defaults to "table".
+        table_type (str, optional): Table type. Defaults to "regression".
+
+    Raises:
+        ValueError: Unmet format
+
+    Returns:
+        _type_: instance of GCP AutoML object
+    """
 
     aiplatform.init(project=project, location=location)
     if model_type == "table":
@@ -53,6 +65,14 @@ def load_automl(project: str ="project-daisuke-318402",
     return model
 
 def initialize_model(auto: str = True):
+    """Rapper for instantiation of model
+
+    Args:
+        auto (str, optional): Whether the model is from automl. Defaults to True.
+
+    Returns:
+        object: instance of model
+    """
     if auto:
         model = load_automl()
     else:
