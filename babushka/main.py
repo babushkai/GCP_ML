@@ -91,7 +91,7 @@ def get_evaluation():
             model_id=answers["model_id"])
 
     logger.info(evaluation_id)
-    logger.info(metrics)
+    logger.info(json.dumps(metrics, indent=2))
 
     return evaluation_id
 
