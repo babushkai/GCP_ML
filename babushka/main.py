@@ -4,6 +4,8 @@
 import json
 import tempfile
 import warnings
+import subprocess
+
 import inquirer
 from argparse import Namespace
 from datetime import datetime
@@ -71,7 +73,33 @@ def trainer():
 
 @app.command()
 def get_evaluation():
-    return evaluate.get_model_evaluation_tabular_classification()
+    # Get model id as string
+    out = subprocess.check_output(['gcloud ai models list --region us-central1'], shell=True)
+    id_list = [id_.decode('utf-8')[:19] for id_ in out.splitlines()[1:]]
+    # Turn string into id list by decoding and trimming
+
+    questions = [inquirer.Text("project", message="Your GCP Project"),
+                inquirer.Text("location", message="Location of your data"),
+                inquirer.List("model_id",
+                                message="Choose your model ID",
+                                choices=id_list)]
+
+
+    logger.info(subprocess.run(["gcloud ai models list --region us-central1)"]))
+    questions.add(inquirer.List("model_id",
+                                message="Choose your model ID",
+                choices=[id_.decode('utf-8')[:19] for id_ in out.splitlines()[1:]],))
+
+    answers = inquirer.prompt(questions)
+
+    evaluation_id, metrics = evaluate.get_model_evaluation(project=answers["project"],
+            location=answers["location"],
+            model_id=answers["model_id"])
+
+    logger.info(evaluation_id)
+    logger.info(metrics)
+
+    return evaluation_id
 
 @app.command()
 def deploy_model():
