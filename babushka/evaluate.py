@@ -11,7 +11,7 @@ def get_model_evaluation(
             'api_endpoint':f'{location}-aiplatform.googleapis.com'
             }
         )
-    evaluations = model_client.list_model_evaluations(parent=f'projects/{project}/locations/{location}/models/{model_id}}')
+    evaluations = model_client.list_model_evaluations(parent=f'projects/{project}/locations/{location}/models/{model_id}')
     evaluation_id = evaluations.model_evaluations[0].name
     metrics = dict(evaluations.model_evaluations[0].metrics)
     return evaluation_id, metrics
