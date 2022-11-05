@@ -11,7 +11,6 @@ from pathlib import Path
 from typing import Dict, Optional
 
 import pandas as pd
-#import tensorflow 
 import typer
 #from feast import FeatureStore
 #from numpyencoder import NumpyEncoder
@@ -20,8 +19,7 @@ import typer
 #from orchestrator import dag1
 from babushka import data, models, predict, train, utils, evaluate
 
-# Ignore warning
-#warnings.filterwarnings("ignore")
+warnings.filterwarnings("ignore")
 
 # Typer CLI app
 app = typer.Typer()
