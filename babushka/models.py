@@ -11,9 +11,8 @@ display_name="AutoML"
 
 def load_model(model_type = None, table_type=None):
     #Loading process
-    loaded = tf.saved_model.load(MODEL_DIR)
+    #loaded = tf.saved_model.load(MODEL_DIR)
     #serving_input = list(loaded.signatures["serving_default"].structured_input_signatures[1].keys())
-
 
 def load_automl(project: str ="project-daisuke-318402",
                 model_type: str = "table",

@@ -11,7 +11,7 @@ Frame out the simple outline of mlworkflow
 ### Solutions
 - Feasibility
 
-- Constraints 
+- Constraints
 
 Computatonal resources(as is pertaining to Cloud Vendors)
 - Integration
