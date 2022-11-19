@@ -80,7 +80,6 @@ The structure of this repository
 │   └── workflow.py
 ├── pyproject.toml
 ├── requirements.txt
-├── requirements2.txt
 ├── setup.py
 └── tests
     ├── __init__.py

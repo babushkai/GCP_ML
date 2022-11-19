@@ -1,6 +1,3 @@
-import itertools
-import json
-import re
 from argparse import Namespace
 from collections import Counter
 from pathlib import Path
@@ -10,11 +7,12 @@ import numpy as np
 import pandas as pd
 from google.cloud import aiplatform
 
+
 def load_data(project: str = None,
             location: str = "us-central1",
             display_name: str = None,
             type: str = None,
-            source: str = None):
+            source: str = None) -> object:
     """Load data from the source
 
     Args:
@@ -49,21 +47,12 @@ def load_data(project: str = None,
             display_name=display_name,
         )
     else:
-        return False
+        raise ValueError("type is incorrect")
 
     dataset.wait()
 
     print(f'\tDataset: "{dataset.display_name}"')
     print(f'\tname: "{dataset.resource_name}"')
-    print(f'\tColumn: {dataset.column_names}')
+#   print(f'\tColumn: {dataset.column_names}')
 
     return dataset
-
-def filter_name():
-    pass
-
-def prepare():
-    pass
-
-def preprocess():
-    pass

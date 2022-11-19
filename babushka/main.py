@@ -4,30 +4,30 @@
 import json
 import tempfile
 import warnings
-import inquirer
+import subprocess
 from argparse import Namespace
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Optional
 
 import pandas as pd
-#import tensorflow 
 import typer
-#from feast import FeatureStore
-#from numpyencoder import NumpyEncoder
-#from optuna.integration.mlflow import MLflowCallback
+import inquirer
 
-#from orchestrator import dag1
-from babushka import data, models, predict, train, utils, evaluate
+from config import config
+from config.config import logger
+from babushka import data, models, predict, train, utils, evaluate, deploy
 
-# Ignore warning
-#warnings.filterwarnings("ignore")
+warnings.filterwarnings("ignore")
+
 
 # Typer CLI app
 app = typer.Typer()
 
 @app.command()
-def ELT_data():
+def elt_data():
+    """Extract, Load, Transform data
+    """
     questions = [inquirer.Text("project", message="Your GCP Project"),
                 inquirer.Text("location", message="Location of your data"),
                 inquirer.Text("display_name", message="What is the name of dataset?"),
@@ -43,18 +43,8 @@ def ELT_data():
             source=answers["source"])
 
     print(f"Your Dataset ID is: {dataset.name}")
+    logger.info(f"Your Dataset ID is: {dataset.name}")
 
-@app.command()
-def download_auxiliary_data():
-    print("test")
-
-@app.command()
-def trigger_orchestrator():
-    pass
-
-@app.command()
-def compute_feature():
-    pass
 
 @app.command()
 def trainer():
@@ -69,12 +59,84 @@ def trainer():
     target_var=input("Target Column: ", )
     train.train(dataset=dataset, target_column=target_var)
 
+
 @app.command()
 def get_evaluation():
-    return evaluate.get_model_evaluation_tabular_classification()
+    """Retrieve Evaluation of model
+
+    Returns:
+        str: string of evaluation id path
+    """
+
+    questions = [inquirer.Text("project", message="Your GCP Project"),
+                inquirer.Text("location", message="Location of your data"),
+                inquirer.List("model_id",
+                                message="Choose your model ID",
+                                choices=utils.get_id('gcloud ai models list --region us-central1'))]
+
+    answers = inquirer.prompt(questions)
+
+    evaluation_id, metrics = evaluate.get_model_evaluation(project=answers["project"],
+            location=answers["location"],
+            model_id=answers["model_id"])
+
+    logger.info(f"Evaluation ID: {evaluation_id}")
+    logger.info(f"Performance Metrics: \n {json.dumps(metrics, indent=2)}")
+
+    return evaluation_id
+
+
+@app.command()
+def endpoint():
+    """Create Endpoint
+    """
+    questions = [inquirer.Text("project", message="Your GCP Project"),
+                inquirer.Text("location", message="Location of your data"),
+                inquirer.Text("display_name", message="What is the name of endpoint?"),]
+
+    answers = inquirer.prompt(questions)
+
+    deploy.create_endpoint(answers["project"],
+                            answers["display_name"],
+                            answers["location"])
+
 
 @app.command()
 def deploy_model():
+    questions = [inquirer.Text("project", message="Your GCP Project"),
+                inquirer.Text("location", message="Location of your data"),
+                inquirer.List("model_id",
+                                message="Choose your model ID",
+                                choices=utils.get_id('gcloud ai models list --region=us-central1')),
+                inquirer.List("endpoint_id",
+                                message="Choose your model ID",
+                                choices=utils.get_id('gcloud ai endpoints list --region=us-central1'))]
+    answers = inquirer.prompt(questions)
+
+    deploy.deploy_model_with_dedicated_resources(
+    #TODO
+    project=answers["project"],
+    location = answers["locaion"], 
+    model_name= answers["model_id"],
+    machine_type= answers["locaion"],
+    endpoint = answers["endpoint_id"],
+    deployed_model_display_name= answers["locaion"],
+    traffic_percentage= answers["locaion"],
+    traffic_split= answers["locaion"])
+
+
+@app.command()
+def download_auxiliary_data():
+    print("test")
+
+
+@app.command()
+def trigger_orchestrator():
+    pass
+
+
+@app.command()
+def compute_feature():
     pass
 
 if __name__ == "__main__":
