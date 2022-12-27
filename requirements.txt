@@ -15,8 +15,5 @@ uvicorn
 inquirer
 google-cloud-aiplatform
 tensorflow-hub
-<<<<<<< HEAD
 tensorflow
-=======
 apache-airflow-providers-airbyte
->>>>>>> 43d79d0ee656231c282bcaaacc159ae0f8b1d569
