@@ -101,9 +101,9 @@ The structure of this repository
 ## Contributing
 We welcome contributions to this project! Please follow these guidelines when contributing:
 
-Follow the Google Cloud Platform style guide for Python code.
-Write unit tests for any new code you add.
-Document any new features or changes in the README.
+- Follow the Google Cloud Platform style guide for Python code.
+- Write unit tests for any new code you add.
+- Document any new features or changes in the README.
 
 ## License
 This project is licensed under the Apache 2.0 License - see the LICENSE file for details.
